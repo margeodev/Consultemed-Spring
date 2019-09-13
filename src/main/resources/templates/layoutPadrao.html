@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org">
+
+ <div th:include="layout/style :: head"></div>
+ 
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <th:block th:include="fragments/layoutPadrao/sidebar"></th:block>
+
+        <!-- Page Content  -->
+        <div id="content">
+        
+			<!-- Navbar  -->
+            <th:block th:include="fragments/layoutPadrao/navbar"></th:block>
+            
+            <section layout:fragment="conteudo"></section>
+            
+            <!-- Footer  -->
+            <th:block th:include="fragments/layoutPadrao/footer"></th:block>
+        </div> 
+        
+    </div>
+
+	<div th:include="layout/js :: js"></div>
+	
+</body>
+
+</html>

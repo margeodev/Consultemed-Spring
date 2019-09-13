@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layoutPadrao">
+
+<head>
+	<title>Cadastro de Usuário</title>
+</head>
+
+<section layout:fragment="conteudo" style="margin-top: 30px">
+	<th:block th:replace="fragments/mensagens/mensagens-sucesso"></th:block>
+	
+	<!-- ########## HEADER DA PÁGINA ########## -->
+	<div th:if="${usuario.novo}">
+		<th:block th:replace="fragments/page-headers/page-header :: 
+			page-header('Cadastrar Usuário', 'Pesquisar', '')"></th:block>
+	</div>	
+
+	<div th:unless="${usuario.novo}">
+		<th:block th:replace="fragments/page-headers/page-header :: 
+			page-header('Editar Usuário', 'Pesquisar', '')"></th:block>
+	</div>	
+
+		
+	<!-- ########## FORMULÁRIO DE CADASTRO DE USUÁRIO ########## -->
+	<th:block th:replace="pages/usuarios/fragments/forms/form-cadastrar-usuario"></th:block>
+	
+</section>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<!-- Sidebar -->
+	<nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>ConsulteMED</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    	<i class="fas fa-user-md" style="margin-right: 7px"></i>Médicos
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">
+                            	<i class="fas fa-plus"></i>
+                            	<span style="margin-left: 5px">Cadastrar Médico</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#">
+                            	<i class="fas fa-search"></i>
+                            	<span style="margin-left: 5px">Pesquisar Médicos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    	<i class="fas fa-user-injured" style="margin-right: 7px"></i>Pacientes
+                    </a>
+                    
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">                        
+                        <li>
+                            <a href="#">
+                            	<i class="fas fa-plus"></i>
+                            	<span style="margin-left: 5px">Cadastrar Paciente</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#">
+                            	<i class="fas fa-search"></i>
+                            	<span style="margin-left: 5px">Pesquisar Pacientes</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li><i class="far fa-user"></i>
+                    <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    	<i class="fas fa-user" style="margin-right: 7px"></i> Usuários
+                    </a>
+                    
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">                       
+                        <li>
+                            <a th:href="@{/usuarios/novo}">
+                            	<i class="fas fa-plus"></i>
+                            	<span style="margin-left: 5px">Cadastrar Usuário</span>
+                            </a>
+                        </li>
+                       
+                        <li>
+                            <a th:href="@{/usuarios}">
+                            	<i class="fas fa-search"></i>
+                            	<span style="margin-left: 5px">Pesquisar Usuários</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    	<i class="fas fa-calendar-alt" style="margin-right: 7px"></i>Agendamentos
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">                       
+                        <li>
+                            <a href="#">
+                            	<i class="fas fa-plus"></i>
+                            	<span style="margin-left: 5px">Novo Agendamento</span>
+                            </a>
+                        </li>
+                                               
+                        <li>
+                            <a href="#">
+                            	<i class="fas fa-search"></i>
+                            	<span style="margin-left: 5px">Consultas Agendadas</span>
+                            </a>
+                        </li>                        
+                    </ul>
+                </li>
+                
+            </ul>           
+        </nav>
+</body>
+</html>

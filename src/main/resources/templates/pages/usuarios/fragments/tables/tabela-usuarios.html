@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<div>
+	<table class="table table-bordered" style="margin-top: 20px">
+		<thead>
+			<tr>
+				<th scope="col">Nome</th>
+				<th scope="col">E-mail</th>
+				<th scope="col">Login</th>
+				<th scope="col">Status</th>
+				<th scope="col">Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="u : ${usuarios}">
+				<td th:text="${u.nome}"></td>
+				<td th:text="${u.email}"></td>
+				<td th:text="${u.login}"></td>
+				<td th:text="(${u.ativo} ? 'Ativo' : 'Inativo')"></td> 
+				
+				<td class="text-center">
+					
+					<!-- ######### EDITAR USUÁRIO ######### -->
+					<a 	th:href="@{edit/{id}(id=${u.id})}" 
+					 	class="btn  btn-link  btn-xs  js-tooltip"
+					 	title="Editar">
+						<i class="fas fa-edit"></i>
+					 </a>
+					 
+					<!-- ######### EXCLUIR USUÁRIO ######### -->
+					 <a href="#" 
+					 	class="btn  btn-link  btn-xs  js-tooltip" 
+					 	title="Excluir" 
+					 	data-toggle="modal"
+					 	data-target="#confirmacaoExclusaoModal"
+					 	th:attr="data-id=${u.id} , data-nome=${u.nome}"> 
+						<i class="fas fa-trash-alt"></i>
+					 </a> 
+				</td>
+			</tr>
+	
+		</tbody>
+	</table>
+
+	<div class="row">
+	<div class="col-sm-12">
+		<nav aria-label="Navegação de página exemplo">
+		   <ul class="pagination justify-content-center">
+		    <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+		    <li class="page-item"><a class="page-link" href="#">1</a></li>
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+		  </ul>
+		</nav>
+	</div>
+	</div>
+	
+	<th:block th:replace="pages/usuarios/fragments/modal/excluirContatoModal"></th:block>
+
+</div>
+
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org">
+	
+	<div th:fragment="js">	
+		<!-- jQuery - Slim version (=without AJAX) -->
+	    <script th:src="@{/vendor/js/jquery-3.3.1.slim.min.js}"></script>	
+	    
+	    <!-- Popper.JS -->    
+	    <script th:src="@{/vendor/js/popper.min.js}"></script>
+	    
+	    <!-- Bootstrap JS -->	    
+	    <script th:src="@{/vendor/js/bootstrap.min.js}"></script>
+	    
+	    <!-- jQuery Custom Scroller -->
+	    <script th:src="@{/vendor/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+	    
+	    <!-- Custom js -->
+	    <script th:src="@{/js/consultemed.js}"></script>
+	    
+		<script th:src="@{/js/usuarios.js}"></script>
+		
+	    <!-- Bootstrap Switch -->    
+	    <script th:src="@{/vendor/js/bootstrap4-toggle.min.js}"></script>
+	</div>
+	
+</html>

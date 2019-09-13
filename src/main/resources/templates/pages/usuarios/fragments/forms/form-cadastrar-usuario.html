@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">	
+
+	<div>
+		<form autocomplete="off" th:object="${usuario}" th:action="@{/usuarios/salvar}" method="post">
+		
+			<th:block th:include="fragments/mensagens/mensagens-erro-validacao"></th:block>
+			<input type="hidden" th:field="*{id}"/>
+			
+			<div class="row">
+			
+				<!-- ########## NOME ########## -->
+				<div class="col-sm-6  form-group cm-required">
+					<label for="nome">Nome</label>					
+					<input 
+						id="nome" 
+						type="text"
+						class="form-control" 
+						autofocus="autofocus"
+						th:field="*{nome}"
+						th:classappend="${#fields.hasErrors('nome')} ? is-invalid"/>
+				</div>
+
+				<!-- ########## LOGIN ########## -->
+				<div class="form-group  col-sm-3 cm-required">
+					<label for="login">Login</label>					
+					<input 
+						id="login" 
+						type="text" 
+						class="form-control" 
+						th:field="*{login}"
+						th:classappend="${#fields.hasErrors('login')} ? is-invalid"/>
+				</div>							
+
+				<!-- ########## SENHA ########## -->
+				<div class="form-group  col-sm-3 cm-required">
+					<label for="senha" class="control-label">Senha</label>
+					<input 
+						id="senha" 
+						type="password" 
+						class="form-control" 
+						th:field="*{senha}"
+						th:classappend="${#fields.hasErrors('senha')} ? is-invalid"/>				
+				</div>			
+									
+			</div>
+			
+			<div class="row">
+			
+				<!-- ########## EMAIL ########## -->	
+				<div class="form-group  col-sm-4 cm-required">				
+					<label for="email" class="control-label">E-mail</label>					
+					<input 
+						id="email" 
+						type="email" 
+						class="form-control" 
+						th:field="*{email}"
+						th:classappend="${#fields.hasErrors('email')} ? is-invalid"/>
+				</div>
+						
+				
+					
+				<!-- ########## GRUPO ########## -->
+				<div class="form-group  col-sm-4 cm-required">
+					<label for="grupo" class="control-label">Grupo</label>						                
+	                <select	id="grupo" class="form-control"	th:field="*{grupo}"
+	                	th:classappend="${#fields.hasErrors('grupo')} ? is-invalid">						
+						<option value="">Selecione o Grupo</option>
+						<option							
+							th:each="grupo : ${grupos}" 
+							th:value="${grupo.id}"
+							th:text="${grupo.descricao}">
+						</option>
+					</select>	                
+				</div>
+				
+				<!-- ########## STATUS ########## -->
+				<div class="form-group  col-sm-4 cm-required">
+					<label for="status">Status</label>	
+					<div>
+					<input 
+						id="status"
+						type="checkbox" 
+						checked data-toggle="toggle" 
+						data-on="Ativo" 
+						data-off="Inativo" 
+						data-onstyle="success" 
+						data-offstyle="danger"
+						th:field="*{ativo}">
+					</div>				
+				</div>		
+				
+			</div>
+			
+			<button type="submit" class="btn  btn-primary">Salvar</button>
+		</form>
+	</div>
+</html>

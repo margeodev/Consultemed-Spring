@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layoutPadrao">
+
+<head>
+	<title>Pesquisar usuários</title>	
+</head>
+
+<section layout:fragment="conteudo" style="margin-top: 30px">
+ 	<th:block th:replace="fragments/mensagens/mensagens-sucesso"></th:block>
+ 	
+ 	<!-- ########## HEADER DA PÁGINA ########## -->
+	<th:block th:replace="fragments/page-headers/page-header :: 
+		page-header('Pesquisar Usuários', 'Novo Usuário', 'novo')"></th:block> 
+
+	<!-- ########## FORMULÁRIO DE PESQUISA ########## -->
+	<th:block th:replace="pages/usuarios/fragments/forms/form-pesquisar-usuarios"></th:block>
+	
+	<!-- ########## TABELA DE USUÁRIOS ########## -->
+	<th:block th:replace="pages/usuarios/fragments/tables/tabela-usuarios"></th:block> 
+					
+</section>
+
+</html>
