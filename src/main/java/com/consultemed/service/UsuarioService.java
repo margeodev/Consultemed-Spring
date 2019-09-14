@@ -24,22 +24,22 @@ public class UsuarioService {
 	private UsuarioRepository usuarios;
 	
 	@Transactional
-	public void salvar(Usuario usuario) {
+	public Usuario salvar(Usuario usuario) {
 		Optional<Usuario> usuarioOptional = usuarios.findByEmailIgnoreCase(usuario.getEmail());
 		
 		usuarioOptional.ifPresent(usuarioBanco -> {
 			if(usuarioBanco != null && !usuarioBanco.equals(usuario))
 				throw new EmailJaCadastradoException(EMAIL_JA_CADASTRADO);		    
 		});			
-		usuarios.save(usuario);		
+		return usuarios.save(usuario);		
 	}
 	
 	public List<Usuario> pesquisar(UsuarioFilter filter) {
 		return usuarios.buscarFiltrados(filter);
 	}
 	
-	public Usuario procurarPorId(Long id) {
-		return usuarios.getOne(id);
+	public Optional<Usuario> procurarPorId(Long id) {
+		return usuarios.findById(id);
 	}
 			
 	@Transactional
@@ -49,6 +49,10 @@ public class UsuarioService {
 		} catch (PersistenceException e) {
 			throw new ImpossivelExcluirEntidadeException("Impossível excluir usuário.");
 		}
+	}
+	
+	public List<Usuario> listarTodos() {
+		return usuarios.findAll();
 	}
 	
 }
