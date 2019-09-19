@@ -15,49 +15,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.consultemed.model.Usuario;
-import com.consultemed.repository.filter.UsuarioFilter;
-import com.consultemed.service.UsuarioService;
+import com.consultemed.model.Paciente;
+import com.consultemed.repository.filter.PacienteFilter;
+import com.consultemed.service.PacienteService;
 
+@RequestMapping("/api/pacientes")
 @RestController
-@RequestMapping("/api/usuarios")
-public class UsuarioResource {
-	
+public class PacienteResource {
+
 	@Autowired
-	private UsuarioService service;
+	private PacienteService service;
 	
 //	########## GET ##########
 	@GetMapping
-	public List<Usuario> listar(UsuarioFilter filter) {
+	public List<Paciente> pesquisar(PacienteFilter filter) {
 		return service.pesquisar(filter);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) {
-		Usuario usuario = service.procurarPorId(id);		
-		return ResponseEntity.ok(usuario);
+	public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id) {
+		Paciente paciente = service.procurarPorId(id);		
+		return ResponseEntity.ok(paciente);
 	}
-
+	
 //	########## POST ##########
 	@PostMapping
-	public Usuario adicionar(@RequestBody Usuario usuario) {
-		return service.salvar(usuario);
-	}
-		
+	public Paciente adicionar(@RequestBody Paciente paciente) {
+		return service.salvar(paciente);
+	}	
+	
 //	########## PUT ##########
 	@PutMapping("/{id}")
-	public ResponseEntity<Usuario> atualizarUsuario(@RequestBody @Valid Usuario usuario, @PathVariable Long id) {
-		Usuario usuarioBanco = service.procurarPorId(id);	
-		usuario.setId(id);
-		usuarioBanco = service.salvar(usuario);
-		return ResponseEntity.ok(usuarioBanco);
+	public ResponseEntity<Paciente> atualizarPaciente(@RequestBody @Valid Paciente paciente, @PathVariable Long id) {
+		Paciente pacienteBanco = service.procurarPorId(id);	
+		paciente.setId(id);
+		pacienteBanco = service.salvar(paciente);
+		return ResponseEntity.ok(pacienteBanco);
 	}
 	
 //	########## DELETE ##########
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Usuario> excluir(@PathVariable Long id) {
+	public ResponseEntity<Paciente> excluir(@PathVariable Long id) {
 		service.excluir(id);
 		return ResponseEntity.noContent().build();
 	}
-
+	
 }

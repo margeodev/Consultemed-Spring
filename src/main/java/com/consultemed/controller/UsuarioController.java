@@ -17,7 +17,7 @@ import com.consultemed.model.Usuario;
 import com.consultemed.repository.GrupoRepository;
 import com.consultemed.repository.filter.UsuarioFilter;
 import com.consultemed.service.UsuarioService;
-import com.consultemed.service.exception.EmailJaCadastradoException;
+import com.consultemed.service.exception.JaCadastradoException;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -56,7 +56,7 @@ public class UsuarioController {
 		
 		try {
 			service.salvar(usuario);
-		} catch(EmailJaCadastradoException e) {
+		} catch(JaCadastradoException e) {
 			result.rejectValue("nome", e.getMessage(), e.getMessage());
 			return novo(usuario);
 		}		

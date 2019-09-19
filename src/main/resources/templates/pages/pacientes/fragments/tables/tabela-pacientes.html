@@ -8,36 +8,31 @@
 			<tr>
 				<th scope="col">Nome</th>
 				<th scope="col">E-mail</th>
-				<th scope="col">Login</th>
-				<th scope="col">Grupo</th>
-				<th scope="col">Status</th>
+				<th scope="col">CPF</th>
 				<th scope="col">Ações</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="u : ${usuarios}">
-				<td th:text="${u.nome}"></td>
-				<td th:text="${u.email}"></td>
-				<td th:text="${u.login}"></td>
-				<td th:text="${u.grupo.descricao}"></td>
-				<td th:text="(${u.ativo} ? 'Ativo' : 'Inativo')"></td> 
-				
+			<tr th:each="p : ${pacientes}">
+				<td th:text="${p.nome}"></td>
+				<td th:text="${p.email}"></td>
+				<td th:text="${p.cpf}"></td>				
 				<td class="text-center">
 					
-					<!-- ######### EDITAR USUÁRIO ######### -->
-					<a 	th:href="@{usuarios/edit/{id}(id=${u.id})}" 
+					<!-- ######### EDITAR PACIENTE ######### -->
+					<a 	th:href="@{pacientes/edit/{id}(id=${p.id})}" 
 					 	class="btn  btn-link  btn-xs  js-tooltip"
 					 	title="Editar">
 						<i class="fas fa-edit"></i>
 					 </a>
 					 
-					<!-- ######### EXCLUIR USUÁRIO ######### -->
+					<!-- ######### EXCLUIR PACIENTE ######### -->
 					 <a href="#" 
 					 	class="btn  btn-link  btn-xs  js-tooltip" 
 					 	title="Excluir" 
 					 	data-toggle="modal"
 					 	data-target="#confirmacaoExclusaoModal"
-					 	th:attr="data-id=${u.id} , data-nome=${u.nome}"> 
+					 	th:attr="data-id=${p.id} , data-nome=${p.nome}"> 
 						<i class="fas fa-trash-alt"></i>
 					 </a> 
 				</td>
@@ -60,7 +55,7 @@
 	</div>
 	</div>
 	
-	<th:block th:replace="pages/usuarios/fragments/modal/excluirContatoModal"></th:block>
+	<th:block th:replace="pages/pacientes/fragments/modal/excluirPacienteModal"></th:block>
 
 </div>
 

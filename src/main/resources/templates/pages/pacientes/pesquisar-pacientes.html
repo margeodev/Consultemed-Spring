@@ -4,21 +4,21 @@
 	layout:decorate="layoutPadrao">
 
 <head>
-	<title>Pesquisar usuários</title>	
+	<title>Pesquisar Pacientes</title>	
 </head>
 
 <section layout:fragment="conteudo" style="margin-top: 30px">
  	<th:block th:replace="fragments/mensagens/mensagens-sucesso"></th:block>
- 	
- 	<!-- ########## HEADER DA PÁGINA ########## -->
+		
+	<!-- ########## HEADER DA PÁGINA ########## -->
 	<th:block th:replace="fragments/page-headers/page-header :: 
-		header('Pesquisar Usuários', '/usuarios/novo', 'Novo Usuário')"></th:block>
+		header('Pesquisar Pacientes', '/pacientes/novo', 'Novo Paciente')"></th:block>
 
 	<!-- ########## FORMULÁRIO DE PESQUISA ########## -->
-	<th:block th:replace="pages/usuarios/fragments/forms/form-pesquisar-usuarios"></th:block>
+	<th:block th:replace="pages/pacientes/fragments/forms/form-pesquisar-pacientes"></th:block>
 	
-	<!-- ########## TABELA DE USUÁRIOS ########## -->
-	<th:block th:replace="pages/usuarios/fragments/tables/tabela-usuarios"></th:block> 
+	<!-- ########## TABELA DE PACIENTES ########## -->
+	<th:block th:replace="pages/pacientes/fragments/tables/tabela-pacientes"></th:block> 
 					
 </section>
 

@@ -12,25 +12,23 @@ import org.springframework.transaction.annotation.Transactional;
 import com.consultemed.model.Usuario;
 import com.consultemed.repository.filter.UsuarioFilter;
 import com.consultemed.repository.usuarios.UsuarioRepository;
-import com.consultemed.service.exception.EmailJaCadastradoException;
 import com.consultemed.service.exception.ImpossivelExcluirEntidadeException;
+import com.consultemed.service.exception.JaCadastradoException;
+import com.consultemed.service.exception.RecursoNaoEncontradoException;
 
 @Service
 public class UsuarioService {
 
-	private static final String EMAIL_JA_CADASTRADO = "Email já cadastrado";
+	private static final String USUARIO_JA_CADASTRADO = "Já existe um usuário cadastrado com esse Email";
+	private static final String USUARIO_NAO_ENCONTRADO = "Usuário não encontrado";
+	private static final String IMPOSSIVEL_EXCLUIR = "Não é possível excluir o usuário";
 	
 	@Autowired
 	private UsuarioRepository usuarios;
 	
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
-		Optional<Usuario> usuarioOptional = usuarios.findByEmailIgnoreCase(usuario.getEmail());
-		
-		usuarioOptional.ifPresent(usuarioBanco -> {
-			if(usuarioBanco != null && !usuarioBanco.equals(usuario))
-				throw new EmailJaCadastradoException(EMAIL_JA_CADASTRADO);		    
-		});			
+		verificaSeJaExisteUsuarioComEmail(usuario);				
 		return usuarios.save(usuario);		
 	}
 	
@@ -38,22 +36,35 @@ public class UsuarioService {
 		return usuarios.buscarFiltrados(filter);
 	}
 	
-	public Optional<Usuario> procurarPorId(Long id) {
-		return usuarios.findById(id);
+	public Usuario procurarPorId(Long id) {
+		Usuario usuario = verificaSeUsuarioExiste(id);
+		return usuario;
 	}
-			
+
 	@Transactional
 	public void excluir(Long id) {
+		verificaSeUsuarioExiste(id);
 		try {			
 			this.usuarios.deleteById(id);
 		} catch (PersistenceException e) {
-			throw new ImpossivelExcluirEntidadeException("Impossível excluir usuário.");
+			throw new ImpossivelExcluirEntidadeException(IMPOSSIVEL_EXCLUIR);
 		}
 	}
 	
-	public List<Usuario> listarTodos() {
-		return usuarios.findAll();
+	
+	private Usuario verificaSeUsuarioExiste(Long id) {
+		Optional<Usuario> usuario = usuarios.findById(id);		
+		if(!usuario.isPresent()) 
+			throw new RecursoNaoEncontradoException(USUARIO_NAO_ENCONTRADO);
+		return usuario.get();
 	}
 	
+	private void verificaSeJaExisteUsuarioComEmail(Usuario usuario) {
+		Optional<Usuario> usuarioOptional = usuarios.findByEmailIgnoreCase(usuario.getEmail());		
+		usuarioOptional.ifPresent(usuarioBanco -> {
+			if(!usuarioBanco.equals(usuario))
+				throw new JaCadastradoException(USUARIO_JA_CADASTRADO);
+		});
+	}
 }
 

@@ -4,25 +4,26 @@
 	layout:decorate="layoutPadrao">
 
 <head>
-	<title>Cadastro de Usuário</title>
+	<title>Cadastro de Paciente</title>
 </head>
 
 <section layout:fragment="conteudo" style="margin-top: 30px">
 	<th:block th:replace="fragments/mensagens/mensagens-sucesso"></th:block>
-	
+		
 	<!-- ########## HEADER DA PÁGINA ########## -->
-	<div th:if="${usuario.novo}">
+	<div th:if="${paciente.novo}">
 		<th:block th:replace="fragments/page-headers/page-header :: 
-			header('Cadastrar Usuário', '/usuarios', 'Pesquisar')"></th:block>
+			header('Cadastrar Paciente', '/pacientes', 'Pesquisar')"></th:block>
 	</div>
 	
-	<div th:unless="${usuario.novo}">
+	<div th:unless="${paciente.novo}">
 		<th:block th:replace="fragments/page-headers/page-header :: 
-			header('Editar Usuário', '/usuarios', 'Pesquisar')"></th:block>
+			header('Editar Paciente', '/pacientes', 'Pesquisar')"></th:block>
 	</div>	
-			
-	<!-- ########## FORMULÁRIO DE CADASTRO DE USUÁRIO ########## -->
-	<th:block th:replace="pages/usuarios/fragments/forms/form-cadastrar-usuario"></th:block>
+
+		
+	<!-- ########## FORMULÁRIO DE CADASTRO DE PACIENTE ########## -->
+	<th:block th:replace="pages/pacientes/fragments/forms/form-cadastrar-paciente"></th:block>
 	
 </section>
 
